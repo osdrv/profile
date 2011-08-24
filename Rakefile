@@ -13,12 +13,11 @@ require 'rake'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "profile"
   gem.homepage = "http://github.com/4pcbr/profile"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Define profiled object data set}
+  gem.description = %Q{This tool helps you to define multiple data sets, which you can use later in data profiling}
   gem.email = "i4pcbr@gmail.com"
   gem.authors = ["4pcbr"]
   # dependencies defined in Gemfile
