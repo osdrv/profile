@@ -3,7 +3,7 @@ module Profile
   require "enumerable"
   require "profile/document"
 
-  
+
   module Version
     MAJOR = 0
     MINOR = 1
