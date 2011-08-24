@@ -12,6 +12,7 @@ end
 require 'rake'
 
 require 'jeweler'
+require './lib/profile'
 Jeweler::Tasks.new do |gem|
   gem.name = "profile"
   gem.homepage = "http://github.com/4pcbr/profile"
@@ -20,7 +21,8 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{This tool helps you to define multiple data sets, which you can use later in data profiling}
   gem.email = "i4pcbr@gmail.com"
   gem.authors = ["4pcbr"]
-  # dependencies defined in Gemfile
+  gem.add_dependency "active_support", ">= 2.3.5"
+  gem.version = Profile::Version::STRING
 end
 Jeweler::RubygemsDotOrgTasks.new
 
