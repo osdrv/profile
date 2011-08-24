@@ -20,13 +20,13 @@ Gem::Specification.new do |s|
     ".document",
     ".rspec",
     "Gemfile",
-    "Gemfile.lock",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
     "lib/enumerable.rb",
     "lib/profile.rb",
     "lib/profile/document.rb",
+    "profile.gemspec",
     "spec/enumerable_spec.rb",
     "spec/lib/document_spec.rb",
     "spec/profile_spec.rb",
@@ -42,27 +42,27 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<activesupport>, [">= 2.3.5"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 0"])
       s.add_development_dependency(%q<rspec>, ["~> 2.3.0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
-      s.add_runtime_dependency(%q<active_support>, [">= 2.3.5"])
+      s.add_runtime_dependency(%q<active_support>, [">= 0"])
     else
-      s.add_dependency(%q<activesupport>, [">= 2.3.5"])
+      s.add_dependency(%q<activesupport>, [">= 0"])
       s.add_dependency(%q<rspec>, ["~> 2.3.0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_dependency(%q<rcov>, [">= 0"])
-      s.add_dependency(%q<active_support>, [">= 2.3.5"])
+      s.add_dependency(%q<active_support>, [">= 0"])
     end
   else
-    s.add_dependency(%q<activesupport>, [">= 2.3.5"])
+    s.add_dependency(%q<activesupport>, [">= 0"])
     s.add_dependency(%q<rspec>, ["~> 2.3.0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
     s.add_dependency(%q<rcov>, [">= 0"])
-    s.add_dependency(%q<active_support>, [">= 2.3.5"])
+    s.add_dependency(%q<active_support>, [">= 0"])
   end
 end
 
