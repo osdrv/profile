@@ -1,7 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    activesupport (>= 2.3.5)
+    activesupport (3.0.10)
     diff-lcs (1.1.2)
     git (1.2.5)
     jeweler (1.6.4)
