@@ -1,6 +1,53 @@
 = profile
 
-Description goes here.
+Simple tool to define objects named data sets
+
+Usage
+-----
+  class MyClass
+    include Profile::Document
+    define_profile :some_profile, %w(attr0 attr1 meth0)
+    attr_accessor :attr0, attr1, attr2
+
+    def meth0
+      "#{attr0}: #{attr1}"
+    end
+  end
+
+  c = MyClass.new
+  c.attr0 = "foo"
+  c.attr1 = "bar"
+  c.attr2 = "tar"
+
+  p c.profile.some_profile
+  # produces { :attr0 => "foo", :attr1 => "bar", :meth0 => "foo: bar" }
+  
+
+  # profile also extends ruby enumerable instances:
+  collection = []
+  class A
+    include Profile::Document
+    define_profile :b, %w(foo bar)
+    attr_accessor :foo
+    
+    def bar
+      foo * foo
+    end
+  end
+
+  10.times do |i|
+    obj = A.new
+    obj.foo = i
+    collection << i
+  end
+
+  p collection.profile(:b)
+  # produces [{:foo=>0, :bar=>0}, {:foo=>1, :bar=>1},
+    {:foo=>2, :bar=>4}, {:foo=>3, :bar=>9}, {:foo=>4, :bar=>16}, 
+    {:foo=>5, :bar=>25}, {:foo=>6, :bar=>36}, {:foo=>7, :bar=>49}, 
+    {:foo=>8, :bar=>64}, {:foo=>9, :bar=>81}]
+
+
 
 == Contributing to profile
  
