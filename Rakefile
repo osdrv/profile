@@ -21,7 +21,6 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{This tool helps you to define multiple data sets, which you can use later in data profiling}
   gem.email = "i4pcbr@gmail.com"
   gem.authors = ["4pcbr"]
-  gem.add_dependency "active_support", "~> 3.0.0"
   gem.version = Profile::Version::STRING
 end
 Jeweler::RubygemsDotOrgTasks.new

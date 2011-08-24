@@ -1,12 +1,8 @@
 require "rubygems"
-require "active_support"
 
 module Profile
   module Document
     
-    extend ::ActiveSupport::Concern
-
-
     class ProfileDefiner
        
       attr_accessor :__profile, :__obj
@@ -58,11 +54,10 @@ module Profile
     end
 
 
-    included do
-      class << self
-        attr_accessor :__profile
-      end
-      extend ClassMethods
+    def self.included(base)
+      base.class.send(:attr_accessor, :__profile)
+      base.send(:extend, ClassMethods)
+      base.send(:include, InstanceMethods)
     end
 
   end
