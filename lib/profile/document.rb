@@ -10,13 +10,19 @@ module Profile
 
       def method_missing(m, *args)
         if m.to_s[/\=$/]
-          (self.__profile ||= {})[m[/^([^=]+)/].to_sym] = args.flatten
+          keys = args.flatten
+          if !keys.first.is_a?(Hash)
+            keys = Hash[keys.each.map { |e| [e, e] } ]
+          else
+            keys = keys.first
+          end
+          (self.__profile ||= {})[m[/^([^=]+)/].to_sym] = keys
         else
           fields = self.__profile[m.to_sym] if !self.__profile.nil?
           res = {}
           if !fields.nil? && fields.any?
-            fields.each do |f|
-              res[f.to_sym] = __obj.send(f)
+            fields.each_pair do |k, f|
+              res[k.to_sym] = __obj.send(f)
             end
             res
           end

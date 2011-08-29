@@ -48,6 +48,25 @@ Usage
     {:foo=>8, :bar=>64}, {:foo=>9, :bar=>81}]
 
 
+  # new in version 0.2
+
+  You can define prfiles via hash, this way input hash keys would be a result keys, and input key values would be an instance methods to call when profile builds.
+
+  class B
+    include Profile::Document
+    define profile :b, :k1 => v1, :k2 => v2
+    attr_accessor :v1
+    
+    def v2
+      v1 * v1
+    end
+  end
+
+  b = B.new
+  b.v1 = 5
+  p b.profile.b
+  # produces {:k1=>5, :k2=>25}
+
 
 == Contributing to profile
  

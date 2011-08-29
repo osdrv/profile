@@ -81,5 +81,21 @@ describe "Profile::Document" do
       c.profile.profile2.should eq({ :attr2 => values[:attr2], :attr3 => values[:attr3] })
       c.profile.profile3.should eq({ :attr1 => values[:attr1], :attr3 => values[:attr3] })
     end
+
+
+    it "hash argument defines profile" do
+      class MyClassHashyProfile
+        include Profile::Document
+        attr_accessor :attr1, :attr2, :attr3
+      end
+      lambda { MyClassHashyProfile.send(:define_profile, :profile1, :key1 => :attr1, :key2 => :attr2, :key3 => :attr3) }.should_not raise_error
+      c = MyClassHashyProfile.new
+      values.each do |k, v|
+        c.send("#{k}=", v)
+      end
+      lambda { c.profile.profile1 }.should_not raise_error
+      c.profile.profile1.keys.should eq [:key1, :key2, :key3]
+      c.profile.profile1.values.should eq values.values
+    end
   end
 end
