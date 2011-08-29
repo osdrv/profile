@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{profile}
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["4pcbr"]
-  s.date = %q{2011-08-24}
+  s.date = %q{2011-08-29}
   s.description = %q{This tool helps you to define multiple data sets, which you can use later in data profiling}
   s.email = %q{i4pcbr@gmail.com}
   s.extra_rdoc_files = [
