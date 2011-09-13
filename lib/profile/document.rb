@@ -24,12 +24,10 @@ module Profile
 
 
       def values; to_h.values; end
-
-
       def keys; to_h.keys; end
-
-
       def inspect; to_h; end
+      def to_json; to_h.to_json; end
+      def to_xml; to_h.to_xml; end
 
 
       def and_more(*fields)
