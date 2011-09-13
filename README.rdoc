@@ -90,41 +90,39 @@ instance methods to call when profile builds.
 == Real life usage
 This gem may be powerful using with rails and https://github.com/josevalim/inherited_resources gem when your model become fat. Suppose you need to render select options using json API. No reason to transfer all the model objects data in this case. Example below show how to reject useless fields in API response:
 
-# apps/controllers/items.rb
+  # apps/controllers/items.rb
 
-class ItemsController < InheritedResources::Base
-  respond_to :json, :xml, :html
-  def index
-    index! do |wants|
-      wants.json { respond_with collection.profile(:json) }
-      wants.xml { respond_with collection.profile(:xml) }
+  class ItemsController < InheritedResources::Base
+    respond_to :json, :xml, :html
+    def index
+      index! do |wants|
+        wants.json { respond_with collection.profile(:json) }
+        wants.xml { respond_with collection.profile(:xml) }
+      end
     end
   end
-end
 
-# apps/models/item.rb
 
-# No mater object model you are using here
-
-# Here is an example with mongoid odm:
-
-class Item
-  include Mongoid::Document
-  include Profile::Document
-  field :title
-  field :description # ok, description is helpful for api
-  field :wery_wery_long_text # but this field is not
+  # apps/models/item.rb
+  # No mater object model you are using here
+  # Here is an example with mongoid odm:
+  class Item
+    include Mongoid::Document
+    include Profile::Document
+    field :title
+    field :description # ok, description is helpful for api
+    field :wery_wery_long_text # but this field is not
   
-  define_profile do |p|
-    p.xml = { :id => :_id, :brief => :description }
-    p.json = p.xml.continue(%w(extra)) # so, json profile would contain th same fields as xml extended by extra field
-  end
+    define_profile do |p|
+      p.xml = { :id => :_id, :brief => :description }
+      p.json = p.xml.continue(%w(extra)) # so, json profile would contain th same fields as xml extended by extra field
+    end
 
-  def extra
-    # something helpful here
-    ...
+    def extra
+      # something helpful here
+      ...
+    end
   end
-end
 
 == Copyright
 
