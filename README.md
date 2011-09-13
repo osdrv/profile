@@ -1,6 +1,8 @@
 = profile
 
+
 Simple tool to define objects named data sets
+
 
 Usage
 -----
@@ -67,19 +69,50 @@ Usage
   p b.profile.b
   # produces {:k1=>5, :k2=>25}
 
+  # new in version 0.3
 
-== Contributing to profile
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+  class C
+    
+  end
+
+== Real life usage
+This gem may be powerful using with rails and [inherited_resources](https://github.com/josevalim/inherited_resources) gem when your model become fat. Suppose you need to render select options using json API. No reason to transfer all the model objects data in this case. Example below show how to reject useless fields in API response:
+
+# apps/controllers/items.rb
+class ItemsController < InheritedResources::Base
+  respond_to :json, :xml, :html
+  def index
+    index! do |wants|
+      wants.json { respond_with collection.profile(:json) }
+      wants.xml { respond_with collection.profile(:xml) }
+    end
+  end
+end
+
+# apps/models/item.rb
+# No mater object model you are using here
+# Here is an example with mongoid odm:
+class Item
+  include Mongoid::Document
+  include Profile::Document
+  field :title
+  field :description # ok, description is helpful for api
+  field :wery_wery_long_text # but this field is not
+  
+  define_profile do |p|
+    p.xml = { :id => :_id, :brief => :description }
+    p.json = p.xml.continue(%w(extra)) # so, json profile would contain th same fields as xml extended by extra field
+  end
+
+  def extra
+    # something helpful here
+    ...
+  end
+end
 
 == Copyright
 
 Copyright (c) 2011 4pcbr. See LICENSE.txt for
 further details.
+
 
