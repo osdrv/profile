@@ -7,7 +7,7 @@ module Profile
     class ProfileSet
       attr_accessor :fields, :__obj
 
-      def initialize(fields)
+      def initialize(fields = [])
         self.fields = flatten_fields(fields)
       end
 
@@ -75,7 +75,7 @@ module Profile
           end
           self.__profile_pool[profile_name] = profile
         else
-          p = self.__profile_pool[m.to_sym]
+          p = self.__profile_pool[m.to_sym] || Profile::Document::ProfileSet.new
           p.with(self.__obj) if !p.nil? && self.__obj
           p
         end
