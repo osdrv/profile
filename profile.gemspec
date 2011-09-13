@@ -13,7 +13,8 @@ Gem::Specification.new do |s|
   s.description = %q{This tool helps you to define multiple data sets, which you can use later in data profiling}
   s.email = %q{i4pcbr@gmail.com}
   s.extra_rdoc_files = [
-    "LICENSE.txt"
+    "LICENSE.txt",
+    "README.md"
   ]
   s.files = [
     ".document",
@@ -21,6 +22,7 @@ Gem::Specification.new do |s|
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
+    "README.md",
     "Rakefile",
     "lib/enumerable.rb",
     "lib/profile.rb",
