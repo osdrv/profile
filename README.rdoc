@@ -50,9 +50,11 @@ Usage
     {:foo=>8, :bar=>64}, {:foo=>9, :bar=>81}]
 
 
-  # new in version 0.2
+== new in version 0.2
 
-  You can define prfiles via hash, this way input hash keys would be a result keys, and input key values would be an instance methods to call when profile builds.
+You can define profiles via hash, this way input hash keys 
+would be a result keys, and input key values would be an 
+instance methods to call when profile builds.
 
   class B
     include Profile::Document
@@ -69,16 +71,27 @@ Usage
   p b.profile.b
   # produces {:k1=>5, :k2=>25}
 
-  # new in version 0.3
+== new in version 0.3
+
+  # profiles are extendable
+  # You can define base profile
+  # and extend it any way you need
 
   class C
-    
+    include Profile::Document
+    attr_accessor :attr1, :attr2, :attr3, :attr4
+    define_profile do |p|
+      p.profile1 = %w(attr1 attr2)
+      p.profile2 = p.profile1.continue(%w(attr3))
+      p.profile3 = p.profile2.continue(%w(attr4))
+    end
   end
 
 == Real life usage
-This gem may be powerful using with rails and [inherited_resources](https://github.com/josevalim/inherited_resources) gem when your model become fat. Suppose you need to render select options using json API. No reason to transfer all the model objects data in this case. Example below show how to reject useless fields in API response:
+This gem may be powerful using with rails and https://github.com/josevalim/inherited_resources gem when your model become fat. Suppose you need to render select options using json API. No reason to transfer all the model objects data in this case. Example below show how to reject useless fields in API response:
 
 # apps/controllers/items.rb
+
 class ItemsController < InheritedResources::Base
   respond_to :json, :xml, :html
   def index
@@ -90,8 +103,11 @@ class ItemsController < InheritedResources::Base
 end
 
 # apps/models/item.rb
+
 # No mater object model you are using here
+
 # Here is an example with mongoid odm:
+
 class Item
   include Mongoid::Document
   include Profile::Document
