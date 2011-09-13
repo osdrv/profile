@@ -50,10 +50,12 @@ module Profile
 
       def flatten_fields(fields)
         fields = fields
-        if !fields.first.is_a?(Hash)
-          fields = Hash[fields.flatten.each.map{ |e| [e, e] }]
-        else
-          fields = fields.first
+        if fields.is_a?(Array)
+          if fields.first.is_a?(Hash)
+            fields = fields.first
+          else
+            fields = Hash[fields.flatten.each.map{ |e| [e, e] }]
+          end
         end
         fields
       end
