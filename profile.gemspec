@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{profile}
-  s.version = "0.3.0"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["4pcbr"]
@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.email = %q{i4pcbr@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.md"
+    "README.rdoc"
   ]
   s.files = [
     ".document",
@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
-    "README.md",
+    "README.rdoc",
     "Rakefile",
     "lib/enumerable.rb",
     "lib/profile.rb",
