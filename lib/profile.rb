@@ -6,7 +6,7 @@ module Profile
 
   module Version
     MAJOR = 0
-    MINOR = 2
+    MINOR = 3
     PATCH = 0
     BUILD = nil
 
